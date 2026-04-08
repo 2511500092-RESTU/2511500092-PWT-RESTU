@@ -78,10 +78,10 @@ if (isset($_POST['login'])) {
     if (empty($Username) || empty($Password)) {
         echo "Data Tidak Boleh kosong";
     } else {
-        $userquery = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM user WHERE Username = '$Username' AND Password = '$Password' "));
+        $userquery = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM tabel_users WHERE Username = '$Username' AND Password = '$Password' "));
         
         if ($userquery) {
-            $_SESSION['level'] = 'user';
+            $_SESSION['level'] = 'tabel_users';
             $_SESSION['Username'] = $Username;
             header("location:index.php");
         } else {
