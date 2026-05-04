@@ -1,3 +1,8 @@
+<?php
+require_once "config/koneksi.php";
+
+/** @var mysqli $koneksi */
+?>
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -70,9 +75,12 @@ if(isset($_POST['tambah'])){
                                 placeholder="Nama guru" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="Jenkel">Jenkel</label>
-                            <input type="text" name="Jenkel" id="Jenkel" 
-                                placeholder="Jenkel" class="form-control">
+                        <label for="Jenkel">Jenis Kelamin</label>
+                        <select name="Jenkel" id="Jenkel" class="form-control" required>
+                            <option value="">-- Pilih Jenis Kelamin --</option>
+                            <option value="Laki-Laki">Laki-Laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
                         </div>
                         <div class="form-group">
                             <label for="Pend_terakhir">Pendidikan terakhir</label>

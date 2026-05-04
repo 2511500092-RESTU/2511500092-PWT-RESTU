@@ -1,3 +1,8 @@
+<?php
+require_once "config/koneksi.php";
+
+/** @var mysqli $koneksi */
+?>
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -25,13 +30,12 @@ $_SESSION["KODE"] = $hasilkode;
 
 if(isset($_POST['tambah'])){
     $nis = $_POST['Nis'];
-    $id_user = $_POST['Id_user'];
     $nm_siswa = $_POST['Nm_siswa'];
     $jenkel = $_POST['Jenkel'];
     $hp = $_POST['Hp'];
     $id_kelas = $_POST['Id_kelas'];
 
-    $insert = mysqli_query($koneksi, "INSERT INTO tabel_siswa values ('$nis','$id_user','$nm_siswa','$jenkel','$hp','$id_kelas')");
+    $insert = mysqli_query($koneksi, "INSERT INTO tabel_siswa values ('$nis','$nm_siswa','$jenkel','$hp','$id_kelas')");
     
     if ($insert) {
         echo '<div class="alert alert-info-dismissible">
@@ -59,19 +63,17 @@ if(isset($_POST['tambah'])){
                                 placeholder="Nis" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="Id_user">Id user</label>
-                            <input type="number" name="Id_user" id="Id_user" 
-                                placeholder="Id User" class="form-control">
-                        </div>
-                        <div class="form-group">
                             <label for="Nm_siswa">Nama Siswa</label>
                             <input type="text" name="Nm_siswa" id="Nm_siswa" 
                                 placeholder="Nama Siswa" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="Jenkel">Jenkel</label>
-                            <input type="text" name="Jenkel" id="Jenkel" 
-                                placeholder="Jenkel" class="form-control">
+                        <label for="Jenkel">Jenis Kelamin</label>
+                        <select name="Jenkel" id="Jenkel" class="form-control" required>
+                            <option value="">-- Pilih Jenis Kelamin --</option>
+                            <option value="Laki-Laki">Laki-Laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
                         </div>
                         <div class="form-group">
                             <label for="Hp">Hp</label>
@@ -79,10 +81,25 @@ if(isset($_POST['tambah'])){
                                 placeholder="Hp" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="Id_kelas">Id kelas</label>
-                            <input type="number" name="Id_kelas" id="Id_kelas" 
-                                placeholder="Id kelas" class="form-control">
-                        </div>
+                            <label for="Id_kelas">Id Kelas</label>
+                        <div class="form-group">
+                            <select class="form-control" name="Id_kelas" required>
+                                <option value="" disabled selected>-- Pilih Kelas --</option>
+
+                        <?php
+                            // ambil data dari tabel kelas
+                             $getkelas = mysqli_query($koneksi, "SELECT * FROM tabel_kelas");
+                            // looping data
+                            while ($returnkelas = mysqli_fetch_array($getkelas)) {
+                        ?>
+                            <option value="<?= $returnkelas['Id_kelas']; ?>">
+                        <?= $returnkelas['Nm_kelas']; ?>
+                            </option>
+                        <?php } ?>
+
+                        </select>
+                     </div>
+                </div>
                         
                         <div class="card-footer">
                             <input type="submit" class="btn btn-primary" name="tambah" value="simpan">

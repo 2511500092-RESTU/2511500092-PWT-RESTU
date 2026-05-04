@@ -1,3 +1,17 @@
+<?php
+/** @var mysqli $koneksi */
+
+if ($_SESSION['level'] != 'siswa' && $_SESSION['level'] != 'admin') {
+
+    echo "<script>
+    alert('Akses ditolak');
+    window.location='login.php';
+    </script>";
+
+    exit;
+
+}
+?>
 <div class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
@@ -34,7 +48,6 @@ if(isset($_GET['action'])) {
                     <tr>
                         <th>NO</th>
                         <th>Nis</th>
-                        <th>Id user</th>
                         <th>Nama Siswa</th>
                         <th>Jenkel</th>
                         <th>Hp</th>
@@ -52,7 +65,6 @@ if(isset($_GET['action'])) {
                     <tr>
                         <td><?= $no; ?></td>
                         <td><?= $result['Nis']; ?></td>
-                        <td><?= $result['Id_user']; ?></td>
                         <td><?= $result['Nm_siswa']; ?></td>
                         <td><?= $result['Jenkel']; ?></td>
                         <td><?= $result['Hp']; ?></td>
