@@ -142,6 +142,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kelas</p>
                 </a>
+                </li>
+                 <li class="nav-item">
+                <a href="index.php?page=detail_jadwal" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Detail Jadwal</p>
+                </a>
+                <li class="nav-item">
+                <a href="index.php?page=jadwal_kelas" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Jadwal Kelas</p>
+                </a>
+              <li class="nav-item">
+                <a href="index.php?page=skripsi2511500092" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Skripsi</p>
+                </a>
+                </a>
               </li>
             </ul>
           </li>
@@ -153,15 +170,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Jadwal</p>
-                </a>
-              </li>
-            
-            </ul>
           </li>
           <li class="nav-item">
             <a href="logout.php" class="nav-link">
