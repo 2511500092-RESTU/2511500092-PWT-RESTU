@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 04, 2026 at 03:08 PM
+-- Generation Time: Jul 10, 2026 at 08:41 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `jadwal`
+-- Database: `mahasiswa2`
 --
 
 -- --------------------------------------------------------
@@ -28,13 +28,62 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `detail_jadwal` (
-  `Id_jadwal` int NOT NULL,
-  `Kd_mapel` int NOT NULL,
-  `Kd_guru` varchar(5) NOT NULL,
-  `Hari` varchar(15) NOT NULL,
-  `Jam_mulai` time NOT NULL,
-  `Jam_selesai` time NOT NULL
+  `id_jadwal` int NOT NULL,
+  `kd_mapel` varchar(5) NOT NULL,
+  `kd_guru` varchar(5) NOT NULL,
+  `hari` varchar(15) NOT NULL,
+  `jam_mulai` time NOT NULL,
+  `jam_selesai` time NOT NULL,
+  `nm_kelas` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `detail_jadwal`
+--
+
+INSERT INTO `detail_jadwal` (`id_jadwal`, `kd_mapel`, `kd_guru`, `hari`, `jam_mulai`, `jam_selesai`, `nm_kelas`) VALUES
+(1, 'M-001', 'gy536', 'Senin', '15:51:00', '15:50:00', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jadwal_kelas`
+--
+
+CREATE TABLE `jadwal_kelas` (
+  `id_jadwal` int NOT NULL,
+  `id_kelas` int NOT NULL,
+  `thn_ajaran` varchar(20) DEFAULT NULL,
+  `semester` enum('ganjil','genap') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jadwal_kelas`
+--
+
+INSERT INTO `jadwal_kelas` (`id_jadwal`, `id_kelas`, `thn_ajaran`, `semester`) VALUES
+(1, 1002, '2025-2026', 'ganjil');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `skripsi_2511500092`
+--
+
+CREATE TABLE `skripsi_2511500092` (
+  `Id_skripsi092` varchar(5) NOT NULL,
+  `Judul_skripsi092` varchar(50) NOT NULL,
+  `Topik092` varchar(20) NOT NULL,
+  `Semester092` varchar(20) NOT NULL,
+  `Thn_ajaran092` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `skripsi_2511500092`
+--
+
+INSERT INTO `skripsi_2511500092` (`Id_skripsi092`, `Judul_skripsi092`, `Topik092`, `Semester092`, `Thn_ajaran092`) VALUES
+('M-001', 'titao', 'sejarah manusia 2', 'Semester 1', '2024-2025');
 
 -- --------------------------------------------------------
 
@@ -152,7 +201,22 @@ INSERT INTO `tabel_users` (`Id_user`, `Username`, `Password`, `Role`) VALUES
 -- Indexes for table `detail_jadwal`
 --
 ALTER TABLE `detail_jadwal`
-  ADD PRIMARY KEY (`Id_jadwal`);
+  ADD PRIMARY KEY (`id_jadwal`),
+  ADD KEY `kd_mapel` (`kd_mapel`),
+  ADD KEY `kd_guru` (`kd_guru`);
+
+--
+-- Indexes for table `jadwal_kelas`
+--
+ALTER TABLE `jadwal_kelas`
+  ADD PRIMARY KEY (`id_jadwal`),
+  ADD KEY `id_kelas` (`id_kelas`);
+
+--
+-- Indexes for table `skripsi_2511500092`
+--
+ALTER TABLE `skripsi_2511500092`
+  ADD PRIMARY KEY (`Id_skripsi092`);
 
 --
 -- Indexes for table `tabel_guru`
@@ -187,6 +251,12 @@ ALTER TABLE `tabel_users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `jadwal_kelas`
+--
+ALTER TABLE `jadwal_kelas`
+  MODIFY `id_jadwal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tabel_users`
